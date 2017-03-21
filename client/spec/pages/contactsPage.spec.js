@@ -13,6 +13,16 @@ describe('The Contacts Page', () => {
       expect(page.contactsCollection).toBeDefined();
     });
 
+    it('should have Andrew\'s name and number', () => {
+      expect(page.$el).toContainText('Name: Andrew');
+      expect(page.$el).toContainText('Phone: 0431 333 111');
+    });
+
+    it('should have Ray\'s name and number', () => {
+      expect(page.$el).toContainText('Name: Ray');
+      expect(page.$el).toContainText('Phone: 0431 333 222');
+    });
+
     describe('loading data', () => {
       it('should load the data from ...');
     });
