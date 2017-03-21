@@ -21,5 +21,11 @@ describe('Check-in dance', () => {
       expect(page.$el).toContainText('Jonathon');
     });
     // TODO: Add a test to check for your name
+    describe('check names on teamPage',() => {
+      it('should include the text "Seoyoon"', () => {
+        expect(page.$el).toContainText('Seoyoon');
+    });
+
+    })
   });
 });
