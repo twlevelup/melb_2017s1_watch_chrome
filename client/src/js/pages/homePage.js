@@ -10,6 +10,7 @@ const homePage = Page.extend({
   template,
 
   buttonEvents: {
+    left: 'goToContacts',
     right: 'goToContacts',
     top: 'scrollUp',
     bottom: 'scrollDown',
@@ -20,7 +21,7 @@ const homePage = Page.extend({
   },
 
   scrollUp() {
-    $('#watch-face').animate({ scrollTop: '-=70px' });
+    $('#watch-face').animate({ scrollTop: '-=190px' });
   },
 
   scrollDown() {
@@ -31,6 +32,16 @@ const homePage = Page.extend({
     this.$el.html(this.template());
     return this;
   },
+
+  formatHours(hh) {
+    const hstring = hh.toString();
+    if (hstring.length === 2) {
+      return hstring
+    }
+    else {
+      return '0' + hstring
+    }
+  }
 
 });
 

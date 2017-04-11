@@ -40,14 +40,21 @@ describe('The Home Page', () => {
     });
   });
 
-  describe('rendering', () => {
-    it('should produce the correct HTML', () => {
-      page.render();
-      expect(page.$el).toContainText('Hello, World!');
-    });
+  // describe('time', () => {
+  // it('should show current time', () => {
+  //   page.render();
+  //   expect().toContainText((new Date).getHours());
+  // });
 
-    it('returns the view object', () => {
-      expect(page.render()).toEqual(page);
+  describe('formatHours', () => {
+    it('should be 07 if it is 7am zero padded', () => {
+      expect(page.formatHours(7)).toEqual('07');
+    });
+    it('should be 11 if it is 11am', () => {
+      expect(page.formatHours(11)).toEqual('11');
+    });
+    it('should be 00 if it is 12am', () => {
+      expect(page.formatHours(0)).toEqual('00');
     });
   });
 });
