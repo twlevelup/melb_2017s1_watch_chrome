@@ -9,7 +9,7 @@ const eventsList = Menu.extend({
   id: 'test-menu',
 
   buttonEvents: {
-    face: 'select',
+    right: 'select',
     left: 'back',
     top: 'previous',
     bottom: 'next',
