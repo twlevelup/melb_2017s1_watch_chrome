@@ -1,4 +1,5 @@
 const SnapGamePage = require('../../src/js/pages/snapGamePage');
+const eventHub = require('watch_framework').EventHub;
 
 let page;
 
@@ -6,7 +7,15 @@ describe('Snap game mechanics', () => {
   beforeEach(() => {
     page = new SnapGamePage();
     page.render();
-    page.configureButtons();
+  });
+
+  describe('pressing the face', () => {
+    it('should call the function changeQuestion', () => {
+      const spy = spyOn(page, 'changeQuestion');
+      page.configureButtons();
+      eventHub.trigger('face');
+      expect(spy).toHaveBeenCalled();
+    });
   });
 
   describe('changeQuestion functionality', () => {
@@ -24,6 +33,18 @@ describe('Snap game mechanics', () => {
       page.changeAnswer();
       expect(page.$el.find('#answerPanel')).not.toHaveText('test');
       expect(page.$el.find('#answerPanel')).not.toHaveText('');
+    });
+  });
+
+  describe('setAnswerInterval functionality', () => {
+    it('should change the answer after 3s', () => {
+      const spy = spyOn(page, 'changeAnswer');
+      jasmine.clock().install();
+      page.setAnswerTimeout(3000);
+      expect(spy).not.toHaveBeenCalled();
+      jasmine.clock().tick(3001);
+      expect(spy).toHaveBeenCalled();
+      jasmine.clock().uninstall();
     });
   });
 });
