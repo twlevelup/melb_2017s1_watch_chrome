@@ -7,16 +7,16 @@ describe('Snap game mechanics', () => {
   beforeEach(() => {
     page = new SnapGamePage();
     page.render();
-    page.configureButtons();
   });
 
-  // describe('pressing the face', () => {
-  //   it('should call the function changeQuestion', () => {
-  //     spyOn(page, 'changeQuestion');
-  //     eventHub.trigger('face');
-  //     expect(page.changeQuestion).toHaveBeenCalled();
-  //   });
-  // });
+  describe('pressing the face', () => {
+    it('should call the function changeQuestion', () => {
+      const spy = spyOn(page, 'changeQuestion');
+      page.configureButtons();
+      eventHub.trigger('face');
+      expect(spy).toHaveBeenCalled();
+    });
+  });
 
   describe('changeQuestion functionality', () => {
     it('should change the number shown in the question panel', () => {
@@ -24,7 +24,7 @@ describe('Snap game mechanics', () => {
       page.changeQuestion();
       expect(page.$el.find('#questionPanel')).not.toHaveText('test');
       expect(page.$el.find('#questionPanel')).not.toHaveText('');
-    })
+    });
   });
 
   describe('changeAnswer functionality', () => {
@@ -33,6 +33,18 @@ describe('Snap game mechanics', () => {
       page.changeAnswer();
       expect(page.$el.find('#answerPanel')).not.toHaveText('test');
       expect(page.$el.find('#answerPanel')).not.toHaveText('');
-    })
+    });
+  });
+
+  describe('setAnswerInterval functionality', () => {
+    it('should change the answer after 3s', () => {
+      const spy = spyOn(page, 'changeAnswer');
+      jasmine.clock().install();
+      page.setAnswerTimeout(3000);
+      expect(spy).not.toHaveBeenCalled();
+      jasmine.clock().tick(3001);
+      expect(spy).toHaveBeenCalled();
+      jasmine.clock().uninstall();
+    });
   });
 });
