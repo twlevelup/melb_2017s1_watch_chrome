@@ -8,6 +8,8 @@ const snapGamePage = Page.extend({
   id: 'snapGame',
 
   timeoutId: undefined,
+  currentQuestion: undefined,
+  currentAnswer: undefined,
 
   template,
 
@@ -19,17 +21,37 @@ const snapGamePage = Page.extend({
     return Math.floor(Math.random() * ((max - min) + 1)) + min;
   },
 
-  changePanel(selector) {
-    this.$el.find(selector).text(this.getRandomInt(0, 10));
+  getNewQuestion() {
+    let newQuestion = this.getRandomInt(0, 10);
+    while (newQuestion === this.currentQuestion) {
+      newQuestion = this.getRandomInt(0, 10);
+    }
+    return newQuestion;
+  },
+
+  getNewAnswer() {
+    let newAnswer = this.getRandomInt(0, 10);
+    while (newAnswer === this.currentAnswer) {
+      newAnswer = this.getRandomInt(0, 10);
+    }
+    return newAnswer;
+  },
+
+  changePanel(selector, value) {
+    this.$el.find(selector).text(value);
   },
 
   changeQuestion() {
-    this.changePanel('#questionPanel');
+    const newQuestion = this.getNewQuestion();
+    this.currentQuestion = newQuestion;
+    this.changePanel('#questionPanel', newQuestion);
     this.changeAnswer();
   },
 
   changeAnswer() {
-    this.changePanel('#answerPanel');
+    const newAnswer = this.getNewAnswer();
+    this.currentAnswer = newAnswer;
+    this.changePanel('#answerPanel', newAnswer);
     this.setAnswerTimeout(answerChangeIntervalMs);
   },
 
