@@ -36,13 +36,10 @@ const homePage = Page.extend({
   formatHours(hh) {
     const hstring = hh.toString();
     if (hstring.length === 2) {
-      return hstring
+      return hstring;
     }
-    else {
-      return '0' + hstring
-    }
-  }
-
+    return `0${hstring}`;
+  },
 });
 
 module.exports = homePage;
