@@ -15,6 +15,11 @@ const snapGamePage = Page.extend({
 
   buttonEvents: {
     face: 'changeQuestion',
+    left: 'exitGame',
+  },
+
+  exitGame() {
+    window.App.navigate('home');
   },
 
   getRandomInt(min, max) {
