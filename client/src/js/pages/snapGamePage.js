@@ -21,19 +21,6 @@ const snapGamePage = Page.extend({
     return Math.floor(Math.random() * ((max - min) + 1)) + min;
   },
 
-  changePanel(selector) {
-    this.$el.find(selector).text(this.getRandomInt(0, 10));
-  },
-
-  changeQuestion() {
-    this.changePanel('#questionPanel');
-  },
-
-  changeAnswer() {
-    this.changePanel('#answerPanel');
-    return Math.floor(Math.random() * ((max - min) + 1)) + min;
-  },
-
   getNewQuestion() {
     let newQuestion = this.getRandomInt(0, 10);
     while (newQuestion === this.currentQuestion) {
