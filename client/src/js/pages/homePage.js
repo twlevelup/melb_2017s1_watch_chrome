@@ -1,7 +1,6 @@
 const Page = require('watch_framework').Page;
 
 const template = require('../../templates/pages/home.hbs');
-const $ = require('jquery');
 
 const homePage = Page.extend({
 
@@ -10,22 +9,11 @@ const homePage = Page.extend({
   template,
 
   buttonEvents: {
-    left: 'goToContacts',
-    right: 'goToContacts',
-    top: 'scrollUp',
-    bottom: 'scrollDown',
+    bottom: 'launchSnapLandingPage',
   },
 
-  goToContacts() {
-    window.App.navigate('contacts');
-  },
-
-  scrollUp() {
-    $('#watch-face').animate({ scrollTop: '-=190px' });
-  },
-
-  scrollDown() {
-    $('#watch-face').animate({ scrollTop: '+=70px' });
+  launchSnapLandingPage() {
+    window.App.navigate('snapLanding');
   },
 
   render() {

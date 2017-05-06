@@ -12,39 +12,15 @@ describe('The Home Page', () => {
   });
 
   describe('button event handlers', () => {
-    describe('right', () => {
-      it('should take the user to the contacts page', () => {
+    describe('bottom', () => {
+      it('should launch the snap game landing page', () => {
         spyOn(window.App, 'navigate');
         page.configureButtons();
-        eventHub.trigger('right');
-        expect(window.App.navigate).toHaveBeenCalledWith('contacts');
-      });
-    });
-
-    describe('top', () => {
-      it('should scroll the watch face up', () => {
-        spyOn(page, 'scrollUp');
-        page.configureButtons();
-        eventHub.trigger('top');
-        expect(page.scrollUp).toHaveBeenCalled();
-      });
-    });
-
-    describe('bottom', () => {
-      it('should scroll the watch face down', () => {
-        spyOn(page, 'scrollDown');
-        page.configureButtons();
         eventHub.trigger('bottom');
-        expect(page.scrollDown).toHaveBeenCalled();
+        expect(window.App.navigate).toHaveBeenCalledWith('snapLanding');
       });
     });
   });
-
-  // describe('time', () => {
-  // it('should show current time', () => {
-  //   page.render();
-  //   expect().toContainText((new Date).getHours());
-  // });
 
   describe('formatHours', () => {
     it('should be 07 if it is 7am zero padded', () => {
