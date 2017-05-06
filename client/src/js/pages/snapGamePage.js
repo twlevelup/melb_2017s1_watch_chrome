@@ -67,12 +67,14 @@ const snapGamePage = Page.extend({
     this.timeoutId = setTimeout(this.changeAnswer.bind(this), timeInterval);
   },
 
+  setupGame() {
+    this.changeQuestion();
+  },
+
   render() {
     this.$el.html(this.template());
 
-    // use render to initialise our timing since it will be
-    // called by the framework
-    this.setAnswerTimeout(answerChangeIntervalMs);
+    this.setupGame();
 
     return this;
   },
