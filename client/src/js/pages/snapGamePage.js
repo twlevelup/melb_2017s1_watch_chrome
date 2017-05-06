@@ -72,11 +72,18 @@ const snapGamePage = Page.extend({
     this.$el.find(selector).text(value);
   },
 
+  getColour(number) {
+    let ColorValue = [ 'red', 'blue', 'green', 'yellow', 'grey', 'white', 'purple', 'orange', 'pink', 'brown', 'silver'];
+    return ColorValue[number];
+  },
+
   changeQuestion() {
     const newQuestion = this.getNewQuestion();
     this.currentQuestion = newQuestion;
     this.changePanel('#questionPanel', newQuestion);
     this.changeAnswer();
+    const ColorValue = this.getColour(this.currentQuestion);
+    this.$el.find('#questionPanel').css('color', ColorValue);
   },
 
   changeAnswer() {
@@ -84,6 +91,8 @@ const snapGamePage = Page.extend({
     this.currentAnswer = newAnswer;
     this.changePanel('#answerPanel', newAnswer);
     this.setAnswerTimeout(answerChangeIntervalMs);
+    const ColorValue = this.getColour(this.currentAnswer);
+    this.$el.find('#answerPanel').css('color', ColorValue);
   },
 
   setAnswerTimeout(timeInterval) {

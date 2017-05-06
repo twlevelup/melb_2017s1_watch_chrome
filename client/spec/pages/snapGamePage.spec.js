@@ -25,6 +25,16 @@ describe('Snap game mechanics', () => {
       expect(page.$el.find('#questionPanel')).not.toHaveText('test');
       expect(page.$el.find('#questionPanel')).not.toHaveText('');
     });
+    it('should change color of question with each number shown', () => {
+      page.$el.find('#questionPanel').text('test');
+      page.changeQuestion();
+      expect(page.$el.find('#questionPanel').css('color')).not.toEqual('');
+    });
+    it('should change color of answer with each number shown', () => {
+      page.$el.find('#answerPanel').text('test');
+      page.changeAnswer();
+      expect(page.$el.find('#answerPanel').css('color')).not.toEqual('');
+    });
   });
 
   describe('changeAnswer functionality', () => {
