@@ -9,6 +9,15 @@ describe('Snap landing page', () => {
     page.render();
   });
 
+  describe('pressing the watch face', () => {
+    it('should start the snap game', () => {
+      spyOn(window.App, 'navigate');
+      page.configureButtons();
+      eventHub.trigger('face');
+      expect(window.App.navigate).toHaveBeenCalledWith('snapGame');
+    });
+  });
+
   describe('pressing the left watch button', () => {
     it('should return to clock page', () => {
       spyOn(window.App, 'navigate');

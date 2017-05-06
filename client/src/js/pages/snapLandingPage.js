@@ -8,7 +8,12 @@ const snapLandingPage = Page.extend({
   template,
 
   buttonEvents: {
+    face: 'startGame',
     left: 'exitGame',
+  },
+
+  startGame() {
+    window.App.navigate('snapGame');
   },
 
   exitGame() {
