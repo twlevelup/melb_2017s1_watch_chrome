@@ -10,8 +10,8 @@ describe('Snap game mechanics', () => {
   });
 
   describe('pressing the face', () => {
-    it('should call the function changeQuestion', () => {
-      const spy = spyOn(page, 'changeQuestion');
+    it('should call the function faceAction', () => {
+      const spy = spyOn(page, 'faceAction');
       page.configureButtons();
       eventHub.trigger('face');
       expect(spy).toHaveBeenCalled();

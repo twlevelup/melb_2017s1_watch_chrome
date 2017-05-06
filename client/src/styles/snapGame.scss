@@ -17,3 +17,24 @@
   text-align: center;
   align-items: center;
 }
+
+.result {
+  font-size: 40px;
+}
+
+#correctResult {
+  color: #96d834;
+}
+
+#wrongResult {
+  color: #ff7b00;
+}
+
+.start {
+  color: #659df7;
+  font-size: 18px;
+}
+
+.screen {
+  padding-left: 1em;
+}

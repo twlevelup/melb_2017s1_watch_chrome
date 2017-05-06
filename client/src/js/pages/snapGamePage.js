@@ -10,12 +10,38 @@ const snapGamePage = Page.extend({
   timeoutId: undefined,
   currentQuestion: undefined,
   currentAnswer: undefined,
+  gameState: 'playing',
 
   template,
 
   buttonEvents: {
-    face: 'changeQuestion',
+  //  face: 'changeQuestion',
+    face: 'faceAction',
     left: 'exitGame',
+  },
+
+  faceAction() {
+    if (this.gameState === 'playing') {
+      document.getElementById('question').style.display = 'none';
+      document.getElementById('response').style.display = 'block';
+      this.checkMatch();
+      this.gameState = 'results';
+    } else {
+      document.getElementById('question').style.display = 'block';
+      document.getElementById('response').style.display = 'none';
+      this.changeQuestion();
+      this.gameState = 'playing';
+    }
+  },
+
+  checkMatch() {
+    if (this.currentQuestion === this.currentAnswer) {
+      document.getElementById('correctResult').style.display = 'block';
+      document.getElementById('wrongResult').style.display = 'none';
+    } else {
+      document.getElementById('correctResult').style.display = 'none';
+      document.getElementById('wrongResult').style.display = 'block';
+    }
   },
 
   exitGame() {
@@ -27,17 +53,17 @@ const snapGamePage = Page.extend({
   },
 
   getNewQuestion() {
-    let newQuestion = this.getRandomInt(0, 10);
+    let newQuestion = this.getRandomInt(0, 5);
     while (newQuestion === this.currentQuestion) {
-      newQuestion = this.getRandomInt(0, 10);
+      newQuestion = this.getRandomInt(0, 5);
     }
     return newQuestion;
   },
 
   getNewAnswer() {
-    let newAnswer = this.getRandomInt(0, 10);
+    let newAnswer = this.getRandomInt(0, 5);
     while (newAnswer === this.currentAnswer) {
-      newAnswer = this.getRandomInt(0, 10);
+      newAnswer = this.getRandomInt(0, 5);
     }
     return newAnswer;
   },
